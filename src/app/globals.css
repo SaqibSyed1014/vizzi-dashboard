@@ -19,3 +19,7 @@ input[type=checkbox]{
 input[type=radio] {
   @apply appearance-none size-3 border border-grey-medium bg-transparent rounded-full checked:border-[3px] checked:border-blue cursor-pointer
 }
+
+.rounded-outline{
+  @apply border border-grey-medium rounded-md py-1 px-3;
+}

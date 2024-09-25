@@ -1,0 +1,32 @@
+'use client'
+import React, {useEffect, useState} from "react";
+
+interface FilterTabsProps {
+    tabItems : { text: string, value: string }[]
+    preSelectedValue: string
+}
+
+export const FilterHorizontalTabs :React.FC<FilterTabsProps> = ({ tabItems, preSelectedValue }) => {
+    const [selectedTab, selectTabFilter] = useState('');
+
+    useEffect(() => {
+        selectTabFilter(preSelectedValue);
+    }, [preSelectedValue]);
+
+    return (
+        <div className="rounded-outline">
+            <div className="flex gap-2.5 font-normal">
+                {tabItems.map((tab) => {
+                    return (
+                        <div
+                            className={`px-1.5 py-[3px] rounded-md cursor-pointer text-xs 2xl:text-sm ${selectedTab === tab.value ? 'bg-blue text-white':''}`}
+                            onClick={() => selectTabFilter(tab.value)}
+                        >
+                            {tab.text}
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
