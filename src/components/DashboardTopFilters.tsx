@@ -6,7 +6,7 @@ import {FilterHorizontalTabs} from "@/components/FilterHorizontalTabs";
 
 export const DashboardTopFilters :React.FC = () => {
     return (
-        <div className="flex flex-col gap-[14px] border-b border-grey-medium py-2 px-4">
+        <div className="flex flex-col gap-[14px] border-b border-grey-medium dashboard-padding">
             <DateFilters />
             <PurchaseFilters />
         </div>

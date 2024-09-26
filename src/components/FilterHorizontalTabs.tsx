@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 
 interface FilterTabsProps {
-    tabItems : { text: string, value: string }[]
+    tabItems : { text: string, value: string, icon?: React.ReactNode }[]
     preSelectedValue: string
 }
 
@@ -19,9 +19,10 @@ export const FilterHorizontalTabs :React.FC<FilterTabsProps> = ({ tabItems, preS
                 {tabItems.map((tab) => {
                     return (
                         <div
-                            className={`px-1.5 py-[3px] rounded-md cursor-pointer text-xs 2xl:text-sm ${selectedTab === tab.value ? 'bg-blue text-white':''}`}
+                            className={`flex gap-1.5 items-center px-1.5 py-[3px] rounded-md cursor-pointer text-xs 2xl:text-sm ${selectedTab === tab.value ? 'bg-blue text-white':''}`}
                             onClick={() => selectTabFilter(tab.value)}
                         >
+                            {tab.icon !== undefined ? tab.icon : '' }
                             {tab.text}
                         </div>
                     )

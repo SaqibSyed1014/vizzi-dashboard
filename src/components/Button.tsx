@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({ type, label, hasIcon, icon, isPrimary, isSecondary }) => {
-    const baseStyles = "flex justify-center items-center gap-2 rounded-lg border font-normal px-3 py-1";
+    const baseStyles = "flex justify-center items-center gap-2 h-8 rounded-lg border font-normal px-3 py-1";
     const primaryBtnStyles =  isPrimary ? "text-white bg-primary border-primary" : "";
     const secondaryBtnStyles = isSecondary ? "border-grey-medium text-coal" : "";
 
