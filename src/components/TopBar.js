@@ -1,6 +1,11 @@
 import HamburgerIcon from '@/assets/svgs/icon-hamburger.svg'
 import ShareIcon from '@/assets/svgs/icon-share.svg';
 import { Button } from "@/components/Button";
+import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
+import CaretUpIcon from "@/assets/svgs/icon-carret-up.svg";
+import React from "react";
+import EntityIcon from "@/assets/svgs/icon-entity.svg";
+import AddCircleIcon from "@/assets/svgs/icon-add-circle.svg";
 
 export default function TopBar() {
     return (
@@ -16,6 +21,7 @@ export default function TopBar() {
                 </div>
 
                 <div className="flex items-center gap-3">
+                    <EntityDropdown />
                     <Button
                         type="button"
                         label="Share"
@@ -26,5 +32,40 @@ export default function TopBar() {
                 </div>
             </div>
         </div>
+    )
+}
+
+function EntityDropdown() {
+    return (
+        <Menu>
+            <MenuButton className="btn-wrap w-[125px]">
+                <EntityIcon />
+                <span>Entity</span>
+                <CaretUpIcon className="ml-auto" />
+            </MenuButton>
+            <MenuItems anchor={{ to: 'bottom end', gap: '10px' }} className="w-[200px] menu-items">
+                <MenuItem>
+                    <div className="menu-item item-header">
+                        Entities
+                    </div>
+                </MenuItem>
+                <MenuItem>
+                    <div className="menu-item">
+                        Go Green
+                    </div>
+                </MenuItem>
+                <MenuItem>
+                    <div className="menu-item">
+                        James & Co
+                    </div>
+                </MenuItem>
+               <MenuItem>
+                   <div className="menu-item border-t border-gray-200 flex items-center gap-2">
+                       <AddCircleIcon />
+                       <p>Add more entities</p>
+                   </div>
+               </MenuItem>
+            </MenuItems>
+        </Menu>
     )
 }

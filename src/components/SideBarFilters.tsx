@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import CaretUpIcon from '@/assets/svgs/icon-carret-up.svg'
 import SearchIcon from '@/assets/svgs/icon-search.svg'
 import HolderIcon from '@/assets/svgs/icon-holder.svg'
+import CaretDownOutlineIcon from '@/assets/svgs/icon-carret-down-outline.svg'
+import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
 
 interface FilterList {
     text: string,
@@ -88,11 +90,33 @@ export const SideBarFilters :React.FC = () => {
         }
     ];
 
+    const quantityOptions = [10, 20, 25, 50];
+
     return (
         <div className="flex flex-col gap-2">
             <FiltrationBlock type="radio" label="Categories" filterList={categoriesFilters} />
-            <FiltrationBlock type="radio" label="Accounts" filterList={categoriesFilters} />
+            <FiltrationBlock type="radio" label="Accounts" filterList={accountsFilters} />
             <FiltrationBlock type="checkbox" label="Suppliers" filterList={suppliersFilters} />
+            <div className="flex justify-between items-center mt-5">
+                <div className="flex gap-1">
+                    <p className="text-blue/40 text-sm">Show Top Suppliers</p>
+                </div>
+                <Menu>
+                    <MenuButton className="btn-wrap gap-2 text-sm">
+                        <span>3</span>
+                        <CaretDownOutlineIcon />
+                    </MenuButton>
+                    <MenuItems anchor={{ to: 'bottom end', gap: '10px' }} className="w-[47px] menu-items">
+                        {quantityOptions.map((val) => (
+                            <MenuItem key={val}>
+                                <div className="menu-item text-center">
+                                    {val}
+                                </div>
+                            </MenuItem>
+                        ))}
+                    </MenuItems>
+                </Menu>
+            </div>
         </div>
     )
 }
@@ -111,7 +135,7 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
                 onClick={() => toggleFilterVisibility(!isFilterBlockCollapsed)}
             >
                 <p className="text-blue text-xs 2xl:text-sm">{label}</p>
-                <CaretUpIcon/>
+                <CaretUpIcon className="text-blue" />
             </div>
 
             {isFilterBlockCollapsed && <div className="collapsed-block flex flex-col gap-3 mt-1">

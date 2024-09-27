@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {Button} from "@/components/Button";
 import SyncIcon from '@/assets/svgs/icon-sync.svg'
 import {FilterHorizontalTabs} from "@/components/FilterHorizontalTabs";
+import {DatePickerWithRange} from "@/components/DateRangePicker";
 
 export const DashboardTopFilters :React.FC = () => {
     return (
@@ -24,12 +25,15 @@ const DateFilters :React.FC = () => {
     ]
 
     return (
-        <div className="flex justify-between items-center">
-            <div>
+        <div className="flex justify-between">
+            <div className="flex gap-3">
                 <FilterHorizontalTabs
                     tabItems={dateFilters}
                     preSelectedValue={dateFilters[0].value}
                 />
+
+
+                <DatePickerWithRange />
             </div>
             <Button
                 type="button"
