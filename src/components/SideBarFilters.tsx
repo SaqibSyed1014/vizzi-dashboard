@@ -33,6 +33,26 @@ export const SideBarFilters :React.FC = () => {
             text: 'Ship Station',
             value: 'ship-station',
             isChecked: false
+        },
+        {
+            text: 'Ship Station',
+            value: 'ship-station',
+            isChecked: false
+        },
+        {
+            text: 'Ship Station',
+            value: 'ship-station',
+            isChecked: false
+        },
+        {
+            text: 'Ship Station',
+            value: 'ship-station',
+            isChecked: false
+        },
+        {
+            text: 'Ship Station',
+            value: 'ship-station',
+            isChecked: false
         }
     ];
     const categoriesFilters :FilterList[] = [
@@ -128,6 +148,15 @@ interface FiltrationBlockProps {
 }
 const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterList }) =>  {
     const [isFilterBlockCollapsed, toggleFilterVisibility] = useState(true);
+
+    const [filters, setFilters] = useState<FilterList[]>(filterList);
+
+    function searchFilterValues(event) {
+        setFilters(filterList.filter(filter => {
+            return filter.text.toLowerCase().includes(event.target.value.toLowerCase());
+        }))
+    }
+
     return (
         <div>
             <div
@@ -144,11 +173,12 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
                     <input
                         type="search"
                         placeholder={`Search ${label}`}
+                        onInput={searchFilterValues}
                         className="py-1 pr-3 pl-8 w-full rounded-md outline-0 border border-grey-medium placeholder:text-teritary placeholder:font-light text-sm"/>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                    {filterList.map((filterItem) => {
+                    {filters.map((filterItem) => {
                         if (type === 'radio') {
                             return <FilterRadioBoxGroup filterItem={filterItem}/>
                         } else if (type === 'checkbox') {

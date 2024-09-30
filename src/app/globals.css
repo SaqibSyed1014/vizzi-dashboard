@@ -37,6 +37,9 @@ input[type=radio] {
 .table-wrapper{
   @apply overflow-auto flex pb-6;
 }
+.sidebar-inner::-webkit-scrollbar{
+  @apply opacity-0;
+}
 .table-wrapper::-webkit-scrollbar {
   @apply h-2;
 }
