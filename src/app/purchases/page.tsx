@@ -2,45 +2,19 @@
 
 import {Button} from "@/components/Button";
 import ArrowLeftIcon from '@/assets/svgs/icon-arrow-left.svg'
-import ColumnChartIcon from '@/assets/svgs/icon-column-chart.svg'
-import LineChartIcon from '@/assets/svgs/icon-line-chart.svg'
-import PieChartIcon from '@/assets/svgs/icon-pie-chart.svg'
-import BarChartIcon from '@/assets/svgs/icon-bar-chart.svg'
 import PaidIcon from '@/assets/svgs/icon-paid.svg'
 import UnpaidIcon from '@/assets/svgs/icon-unpaid.svg'
 import TotalIcon from '@/assets/svgs/icon-total.svg'
-import {FilterHorizontalTabs} from "@/components/FilterHorizontalTabs";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import CaretUpIcon from "@/assets/svgs/icon-carret-up.svg";
 import React, {useState} from "react";
-import {DashboardBarChart} from "@/components/DashboardBarChart";
 import {Tabs} from "@/components/Tabs";
 import {DashboardHeaderBar} from "@/components/DashboardHeaderBar";
+import {PurchaseTable} from "@/components/PurchaseTable";
+import ChevronLeftIcon from "@/assets/svgs/icon-chevron-left.svg";
+import ChevronRightIcon from "@/assets/svgs/icon-chevron-right.svg";
 
-export default function Dashboard() {
-    const chartTypes = [
-        {
-            text: 'Column Chart',
-            value: 'column-chart',
-            icon: <ColumnChartIcon />
-        },
-        {
-            text: 'Line Chart',
-            value: 'line-chart',
-            icon: <LineChartIcon />
-        },
-        {
-            text: 'Pie Chart',
-            value: 'pie-chart',
-            icon: <PieChartIcon />
-        },
-        {
-            text: 'Bar Chart',
-            value: 'bar-chart',
-            icon: <BarChartIcon />
-        }
-    ];
-
+export default function Purchases() {
     const tabs = [
         {
             text: 'Paid',
@@ -59,9 +33,11 @@ export default function Dashboard() {
         }
     ]
 
+    const quantityOptions = [10, 20, 25, 50];
+
     return (
         <div>
-            <DashboardHeaderBar title="Suppliers" />
+            <DashboardHeaderBar title="Purchases" />
 
             <div className="dashboard-padding">
                 <div className="flex justify-between items-center">
@@ -75,13 +51,10 @@ export default function Dashboard() {
                         />
 
                         <Menu>
-                            <MenuButton className="btn-wrap bg-primary text-white">
-                                <div className="bg-blue size-2 rounded-full"></div>
-                                <span>
-                                View
-                                <b> Suppliers</b>
-                            </span>
-                                <CaretUpIcon className="text-white"/>
+                            <MenuButton className="btn-wrap bgwhite text-blue border border-blue">
+                                <div className="bg-[#2EA41B] size-2 rounded-full"></div>
+                                <b> Contact</b>
+                                <CaretUpIcon className="text-blue"/>
                             </MenuButton>
                             <MenuItems anchor={{to: 'bottom start', gap: '10px'}} className="w-[225px] menu-items">
                                 <MenuItem>
@@ -111,34 +84,54 @@ export default function Dashboard() {
                                 </MenuItem>
                             </MenuItems>
                         </Menu>
-
-                        <PreviousViewBtn/>
                     </div>
-
-                    <FilterHorizontalTabs tabItems={chartTypes} preSelectedValue={chartTypes[0].value}/>
                 </div>
 
                 <div className="flex gap-3 pt-6 border-b border-grey-medium">
                     <Tabs tabsList={tabs}/>
                 </div>
 
-                <div className="">
-                    <DashboardBarChart/>
+                <div className="flex flex-col gap-6">
+                    <PurchaseTable />
+                    <div className="flex justify-between">
+                        <div className="flex items-center gap-3 font-normal">
+                            <p>Showing</p>
+                            <Menu>
+                                <MenuButton className="btn-wrap gap-2 text-sm">
+                                    <span>3</span>
+                                </MenuButton>
+                                <MenuItems anchor={{ to: 'bottom end', gap: '10px' }} className="w-[47px] menu-items">
+                                    {quantityOptions.map((val) => (
+                                        <MenuItem key={val}>
+                                            <div className="menu-item text-center">
+                                                {val}
+                                            </div>
+                                        </MenuItem>
+                                    ))}
+                                </MenuItems>
+                            </Menu>
+                            <p>rows</p>
+                        </div>
+
+                        <div>
+                            <ul className="table-pagination">
+                                <li className="rounded-l !w-auto">
+                                    <ChevronLeftIcon />
+                                </li>
+                                <li className="active">1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li className="dots">...</li>
+                                <li>8</li>
+                                <li>9</li>
+                                <li>10</li>
+                                <li className="rounded-r !w-auto">
+                                    <ChevronRightIcon />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    )
-}
-
-
-function PreviousViewBtn() {
-    return (
-        <div className="flex items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="18" viewBox="0 0 8 18" fill="none">
-                <path d="M0.707106 8.05852L7.70711 1.05852C7.89464 0.870982 8 0.616629 8 0.351412L8 17.1798C8 16.9146 7.89464 16.6603 7.70711 16.4727L0.707107 9.47273C0.316583 9.08221 0.316582 8.44904 0.707106 8.05852Z" fill="#E9EAEF"/>
-            </svg>
-            <div className="text-sm bg-grey-light py-2 px-4 rounded flex justify-center items-center">
-                previous view
             </div>
         </div>
     )
