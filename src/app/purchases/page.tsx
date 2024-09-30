@@ -13,6 +13,7 @@ import {DashboardHeaderBar} from "@/components/DashboardHeaderBar";
 import {PurchaseTable} from "@/components/PurchaseTable";
 import ChevronLeftIcon from "@/assets/svgs/icon-chevron-left.svg";
 import ChevronRightIcon from "@/assets/svgs/icon-chevron-right.svg";
+import SearchIcon from "@/assets/svgs/icon-search.svg";
 
 export default function Purchases() {
     const tabs = [
@@ -36,7 +37,7 @@ export default function Purchases() {
     const quantityOptions = [10, 20, 25, 50];
 
     return (
-        <div>
+        <div className="overflow-hidden">
             <DashboardHeaderBar title="Purchases" />
 
             <div className="dashboard-padding">
@@ -55,6 +56,46 @@ export default function Purchases() {
                                 <div className="bg-[#2EA41B] size-2 rounded-full"></div>
                                 <b> Contact</b>
                                 <CaretUpIcon className="text-blue"/>
+                            </MenuButton>
+                            <MenuItems anchor={{to: 'bottom start', gap: '10px'}} className="w-[225px] menu-items">
+                                <MenuItem>
+                                    <div className="menu-item item-header">
+                                        View
+                                    </div>
+                                </MenuItem>
+                                <MenuItem>
+                                    <div className="menu-item">
+                                        Total Purchases
+                                    </div>
+                                </MenuItem>
+                                <MenuItem>
+                                    <div className="menu-item">
+                                        Top Suppliers
+                                    </div>
+                                </MenuItem>
+                                <MenuItem>
+                                    <div className="menu-item">
+                                        Average Days to Pay
+                                    </div>
+                                </MenuItem>
+                                <MenuItem>
+                                    <div className="menu-item">
+                                        Table View
+                                    </div>
+                                </MenuItem>
+                            </MenuItems>
+                        </Menu>
+                    </div>
+
+                    <div className="flex gap-2">
+                        <div className="relative">
+                            <input type="search" placeholder="Search" className="btn-wrap w-[300px] !pl-9"/>
+                            <SearchIcon className="absolute top-1/2 -translate-y-1/2 left-4" />
+                        </div>
+                        <Menu>
+                            <MenuButton className="btn-wrap bgwhite text-blue border border-blue">
+                                <b> Filter Table Columns</b>
+                                <CaretUpIcon className="text-blue" />
                             </MenuButton>
                             <MenuItems anchor={{to: 'bottom start', gap: '10px'}} className="w-[225px] menu-items">
                                 <MenuItem>
