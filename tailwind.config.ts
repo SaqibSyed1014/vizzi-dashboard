@@ -15,13 +15,17 @@ const config: Config = {
         foreground: "var(--foreground)",
         primary: '#41CCAD',
         teritary: '#9CA3AF',
+        red: {
+            dark: '#F05252',
+            light: '#FDE8E8'
+        },
         blue: '#1A2956',
         coal: '#111928',
         grey: {
           light: '#E9EAEF',
           medium: '#E5E7EB'
         },
-		  'hover-blue': '#F3F4FF',
+        'hover-blue': '#F3F4FF',
       },
     },
   },

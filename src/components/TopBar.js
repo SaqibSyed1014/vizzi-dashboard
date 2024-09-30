@@ -9,7 +9,7 @@ import AddCircleIcon from "@/assets/svgs/icon-add-circle.svg";
 
 export default function TopBar() {
     return (
-        <div className="fixed top-0 w-full py-3 px-4 border border-b-grey-medium">
+        <div className="fixed z-50 top-0 w-full py-3 px-4 bg-white border border-b-grey-medium">
             <div className="flex justify-between">
                 <div className="flex items-center gap-3">
                     <div className="flex justify-center items-center size-10 border border-grey-light rounded cursor-pointer transition hover:bg-grey-light">

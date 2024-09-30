@@ -127,7 +127,7 @@ interface FiltrationBlockProps {
     filterList: FilterList[]
 }
 const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterList }) =>  {
-    const [isFilterBlockCollapsed, toggleFilterVisibility] = useState(false);
+    const [isFilterBlockCollapsed, toggleFilterVisibility] = useState(true);
     return (
         <div>
             <div

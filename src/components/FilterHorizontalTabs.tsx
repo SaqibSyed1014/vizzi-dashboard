@@ -19,7 +19,7 @@ export const FilterHorizontalTabs :React.FC<FilterTabsProps> = ({ tabItems, preS
                 {tabItems.map((tab) => {
                     return (
                         <div
-                            className={`flex gap-1.5 items-center px-1.5 py-[3px] rounded-md cursor-pointer text-xs 2xl:text-sm transition hover:bg-hover-blue ${selectedTab === tab.value ? 'bg-blue text-white':''}`}
+                            className={`flex gap-1.5 items-center px-1.5 py-[3px] rounded-md cursor-pointer text-xs 2xl:text-sm transition ${selectedTab === tab.value ? 'bg-blue text-white':'hover:bg-hover-blue'}`}
                             onClick={() => selectTabFilter(tab.value)}
                         >
                             {tab.icon !== undefined ? tab.icon : '' }

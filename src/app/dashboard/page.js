@@ -1,13 +1,19 @@
+'use client'
+
 import {Button} from "@/components/Button";
 import ArrowLeftIcon from '@/assets/svgs/icon-arrow-left.svg'
 import ColumnChartIcon from '@/assets/svgs/icon-column-chart.svg'
 import LineChartIcon from '@/assets/svgs/icon-line-chart.svg'
 import PieChartIcon from '@/assets/svgs/icon-pie-chart.svg'
 import BarChartIcon from '@/assets/svgs/icon-bar-chart.svg'
+import PaidIcon from '@/assets/svgs/icon-paid.svg'
+import UnpaidIcon from '@/assets/svgs/icon-unpaid.svg'
+import TotalIcon from '@/assets/svgs/icon-total.svg'
 import {FilterHorizontalTabs} from "@/components/FilterHorizontalTabs";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import CaretUpIcon from "@/assets/svgs/icon-carret-up.svg";
-import React from "react";
+import React, {useState} from "react";
+import {DashboardBarChart} from "@/components/DashboardBarChart";
 
 export default function Dashboard() {
     const chartTypes = [
@@ -32,6 +38,25 @@ export default function Dashboard() {
             icon: <BarChartIcon />
         }
     ];
+
+    const [selectedTab, selectTab] = useState(0);
+    const tabs = [
+        {
+            text: 'Paid',
+            icon: <PaidIcon />,
+            info: '34.2k'
+        },
+        {
+            text: 'Unpaid',
+            icon: <UnpaidIcon />,
+            info: '0'
+        },
+        {
+            text: 'Total',
+            icon: <TotalIcon />,
+            info: '34.2k'
+        }
+    ]
 
     return (
         <div className="dashboard-padding">
@@ -87,6 +112,29 @@ export default function Dashboard() {
                 </div>
 
                 <FilterHorizontalTabs tabItems={chartTypes} preSelectedValue={chartTypes[0].value} />
+            </div>
+
+            <div className="flex gap-3 pt-6 border-b border-grey-medium">
+                {tabs.map((tab, index) => {
+                    return (
+                        <div className="flex flex-col gap-2.5">
+                            <div key={index}
+                                 className='flex gap-2 items-center text-sm cursor-pointer' onClick={() => selectTab(index)}>
+                                <div className="size-6 bg-grey-medium rounded flex justify-center items-center">
+                                    {tab.icon}
+                                </div>
+                                <p className="font-bold uppercase">{tab.text}</p>
+                                <p className="font-normal">({tab.info})</p>
+                            </div>
+
+                            <div className={`w-full h-0.5 ${selectedTab === index ? 'bg-blue' : 'bg-transparent' }`}></div>
+                        </div>
+                    )
+                })}
+            </div>
+
+            <div className="">
+                <DashboardBarChart />
             </div>
         </div>
     )
