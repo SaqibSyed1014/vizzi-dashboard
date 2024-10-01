@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from "react";
+import React, {FormEventHandler, useState} from "react";
 import CaretUpIcon from '@/assets/svgs/icon-carret-up.svg'
 import SearchIcon from '@/assets/svgs/icon-search.svg'
 import HolderIcon from '@/assets/svgs/icon-holder.svg'
@@ -151,9 +151,10 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
 
     const [filters, setFilters] = useState<FilterList[]>(filterList);
 
-    function searchFilterValues(event) {
+    function searchFilterValues(event :React.FormEvent<EventTarget>) {
+        let target = event.target as HTMLInputElement;
         setFilters(filterList.filter(filter => {
-            return filter.text.toLowerCase().includes(event.target.value.toLowerCase());
+            return filter.text.toLowerCase().includes(target.value.toLowerCase());
         }))
     }
 
