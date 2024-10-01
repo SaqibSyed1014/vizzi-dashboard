@@ -88,6 +88,10 @@ input[type=radio] {
   @apply !bg-transparent !border-0 !shadow-none;
 }
 
+.tippy-box {
+  @apply !text-[11px] !font-medium;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
