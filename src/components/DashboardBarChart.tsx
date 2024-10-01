@@ -50,8 +50,8 @@ export const DashboardBarChart :React.FC = () => {
         },
         dataLabels: {
             enabled: true,
-            formatter: function (val) {
-                return val + "%";
+            formatter: function (val :any) {
+                return val + "k";
             },
             offsetX: 0,
             offsetY: -18,
