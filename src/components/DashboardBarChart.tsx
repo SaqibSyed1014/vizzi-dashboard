@@ -2,6 +2,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import { ApexOptions } from "apexcharts";
 
 export const DashboardBarChart :React.FC = () => {
     const labels =  {
@@ -9,24 +10,27 @@ export const DashboardBarChart :React.FC = () => {
             fontWeight: 800
         }
     }
-    const options = {
+    const options :ApexOptions = {
         chart: {
-            type: 'bar',
             height: 550,
             width: '100%',
             toolbar: {
                 show: false
             },
         },
+        series: [
+            {
+                name: 'Previous',
+                data: [44, 55, 57, 56, 61, 58, 63, 60, 66,  56, 61, 58]
+            },
+            {
+                name: 'Current',
+                data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 12, 34, 7]
+            }
+        ],
         grid: {
             show: true,
             borderColor: '#E9EAEF',
-            column: {
-                width: '150px',
-            },
-            row: {
-                width: '700px',
-            },
             xaxis: {
                 lines: {
                     show: true
@@ -42,7 +46,6 @@ export const DashboardBarChart :React.FC = () => {
             bar: {
                 horizontal: false,
                 columnWidth: '36px',
-                endingShape: 'rounded',
                 dataLabels: {
                     position: 'top', // top, center, bottom
                 },
@@ -50,7 +53,7 @@ export const DashboardBarChart :React.FC = () => {
         },
         dataLabels: {
             enabled: true,
-            formatter: function (val :any) {
+            formatter: function (val :number) {
                 return val + "k";
             },
             offsetX: 0,
@@ -87,13 +90,6 @@ export const DashboardBarChart :React.FC = () => {
         tooltip: {
             shared: true,
             followCursor: false,
-            absolute: {
-                position: 'center',
-                offsetY: -50,
-            },
-            style: {
-                backgroundColor: 'red'
-            },
             intersect: false,
             custom: function({ series, seriesIndex, dataPointIndex, w } :any) {
                 console.log('check ', series, seriesIndex, dataPointIndex, w)
@@ -119,23 +115,12 @@ export const DashboardBarChart :React.FC = () => {
         }
     };
 
-    const series = [
-        {
-            name: 'Previous',
-            data: [44, 55, 57, 56, 61, 58, 63, 60, 66,  56, 61, 58]
-        },
-        {
-            name: 'Current',
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 12, 34, 7]
-        }
-    ];
-
     return (
         <div className="px-1">
             <ApexChart
                 type="bar"
                 options={options}
-                series={series}
+                series={options.series}
             />
         </div>
     )
