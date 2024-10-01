@@ -27,7 +27,7 @@ export const SideBarFiltersWrapper :React.FC<SidebarWrapperProps> = ({ isSidebar
                 </div>
             </div>
 
-            <div onClick={sidebarToggleClicked} className={`${isSidebarExpanded ? '-right-1' : 'right-3'} absolute z-50 top-1/2 -translate-y-1/2 h-10 w-5 bg-white rounded-l border border-grey-medium border-r-0 flex justify-center items-center cursor-pointer hover:bg-gray-100 transition`}>
+            <div onClick={sidebarToggleClicked} className={`${isSidebarExpanded ? '-right-1' : '-right-5'} absolute z-50 top-1/2 -translate-y-1/2 h-10 w-5 bg-white rounded-l border border-grey-medium border-r-0 flex justify-center items-center cursor-pointer hover:bg-gray-100 transition`}>
                 <ChevronLeftIcon className={`${isSidebarExpanded ? '' : 'rotate-180'}`} />
             </div>
         </aside>

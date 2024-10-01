@@ -1,8 +1,9 @@
 'use client'
-import React, {FormEventHandler, useState} from "react";
+import React, {useState} from "react";
 import CaretUpIcon from '@/assets/svgs/icon-carret-up.svg'
 import SearchIcon from '@/assets/svgs/icon-search.svg'
 import HolderIcon from '@/assets/svgs/icon-holder.svg'
+import InfoIcon from '@/assets/svgs/icon-info.svg'
 import CaretDownOutlineIcon from '@/assets/svgs/icon-carret-down-outline.svg'
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
 
@@ -118,8 +119,9 @@ export const SideBarFilters :React.FC = () => {
             <FiltrationBlock type="radio" label="Accounts" filterList={accountsFilters} />
             <FiltrationBlock type="checkbox" label="Suppliers" filterList={suppliersFilters} />
             <div className="flex justify-between items-center mt-5">
-                <div className="flex gap-1">
-                    <p className="text-blue/40 text-sm">Show Top Suppliers</p>
+                <div className="flex gap-1 text-blue/40">
+                    <p className="text-xs">Show Top Suppliers</p>
+                    <InfoIcon />
                 </div>
                 <Menu>
                     <MenuButton className="btn-wrap gap-2 text-sm">
