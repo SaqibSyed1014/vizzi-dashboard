@@ -6,6 +6,9 @@ import HolderIcon from '@/assets/svgs/icon-holder.svg'
 import InfoIcon from '@/assets/svgs/icon-info.svg'
 import CaretDownOutlineIcon from '@/assets/svgs/icon-carret-down-outline.svg'
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/themes/light.css';
+import 'tippy.js/dist/tippy.css';
 
 interface FilterList {
     text: string,
@@ -199,7 +202,9 @@ const FilterCheckboxGroup :React.FC<{ filterItem: FilterList }> = ({ filterItem 
         <div className="flex items-center gap-2">
             <input type="checkbox" checked={filterItem.isChecked} />
             <label className="text-sm">{filterItem.text}</label>
-            <HolderIcon className="cursor-pointer ml-auto" />
+            <Tippy theme="light" content={`Unselecting ${filterItem.text}`}>
+                <div className="cursor-pointer ml-auto"><HolderIcon/></div>
+            </Tippy>
         </div>
     )
 }
