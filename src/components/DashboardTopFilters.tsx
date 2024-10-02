@@ -26,7 +26,7 @@ const DateFilters :React.FC = () => {
 
     return (
         <div className="flex justify-between">
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
                 <FilterHorizontalTabs
                     tabItems={dateFilters}
                     preSelectedValue={dateFilters[0].value}

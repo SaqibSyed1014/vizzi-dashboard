@@ -24,26 +24,37 @@ export function DatePickerWithRange({
         to: undefined,
     })
 
+    function clearDates() {
+        setDate({ from: undefined, to: undefined });
+    }
+
+    function setTodayDate() {
+        setDate({ from: new Date(), to: undefined })
+    }
+
     return (
             <Popover>
-                <PopoverTrigger asChild>
-                    <button className="btn-wrap min-w-[235px] text-xs">
-                        <CalendarIcon/>
-                        {date?.from ? (
-                            date.to ? (
-                                <>
-                                    {format(date.from, "LLL dd, y")} -{" "}
-                                    {format(date.to, "LLL dd, y")}
-                                </>
+                <div className="relative">
+                    <PopoverTrigger asChild>
+                        <button className="btn-wrap min-w-[235px] text-xs 2xl:text-sm">
+                            <CalendarIcon/>
+                            {date?.from ? (
+                                date.to ? (
+                                    <>
+                                        {format(date.from, "LLL dd, y")} -{" "}
+                                        {format(date.to, "LLL dd, y")}
+                                    </>
+                                ) : (
+                                    format(date.from, "LLL dd, y")
+                                )
                             ) : (
-                                format(date.from, "LLL dd, y")
-                            )
-                        ) : (
-                            <span>Custom Range</span>
-                        )}
-                        <CaretUpIcon className="ml-auto"/>
-                    </button>
-                </PopoverTrigger>
+                                <span>Custom Range</span>
+                            )}
+                            <CaretUpIcon className="ml-auto"/>
+                        </button>
+                    </PopoverTrigger>
+                    {(date?.from && !date?.to) && <p className="absolute -bottom-5 text-red-600 text-xs">Please select range</p>}
+                </div>
                 <PopoverContent className="w-auto p-0 bg-white" align="end">
                     <Calendar
                         initialFocus
@@ -55,8 +66,8 @@ export function DatePickerWithRange({
                     />
 
                     <div className="flex gap-3 p-3 pt-0">
-                        <button className="w-full bg-white rounded py-2.5 hover:bg-grey-medium transition">Clear</button>
-                        <button className="w-full bg-blue rounded text-white py-2.5 font-medium hover:bg-blue/70 transition">Today</button>
+                        <button onClick={clearDates} className="w-full bg-white rounded py-2.5 hover:bg-grey-medium transition">Clear</button>
+                        <button onClick={setTodayDate} className="w-full bg-blue rounded text-white py-2.5 font-medium hover:bg-blue/70 transition">Today</button>
                     </div>
                 </PopoverContent>
             </Popover>
