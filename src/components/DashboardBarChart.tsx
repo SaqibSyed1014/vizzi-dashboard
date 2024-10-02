@@ -3,8 +3,12 @@ import React from "react";
 import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { ApexOptions } from "apexcharts";
+import { useRouter } from "next/navigation";
+
 
 export const DashboardBarChart :React.FC = () => {
+    const router = useRouter();
+
     const labels =  {
         style: {
             fontWeight: 800
@@ -17,6 +21,11 @@ export const DashboardBarChart :React.FC = () => {
             toolbar: {
                 show: false
             },
+            events: {
+                dataPointSelection(e: any, chart?: any, options?: any) {
+                    router.push('/purchases');
+                }
+            }
         },
         series: [
             {
