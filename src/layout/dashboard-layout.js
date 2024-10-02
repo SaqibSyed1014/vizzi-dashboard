@@ -1,10 +1,13 @@
 'use client'
 import React, {useState} from "react";
 import TopBar from "@/components/TopBar";
-import {SideBarFiltersWrapper} from "@/components/SideBarFiltersWrapper";
-import {DashboardTopFilters} from "@/components/DashboardTopFilters";
-import {DashboardHeaderBar} from "@/components/DashboardHeaderBar";
-import ChevronLeftIcon from "@/assets/svgs/icon-chevron-left.svg";
+import dynamic from "next/dynamic";
+const SideBarFiltersWrapper = dynamic(() => import('../components/SideBarFiltersWrapper').then(comp => comp.SideBarFiltersWrapper), {
+    ssr: false
+})
+const DashboardTopFilters = dynamic(() => import('../components/DashboardTopFilters').then(comp => comp.DashboardTopFilters), {
+    ssr: false
+})
 
 
 export default function DashboardLayout({ children }) {
