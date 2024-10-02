@@ -6,8 +6,8 @@ import PaidIcon from '@/assets/svgs/icon-paid.svg'
 import UnpaidIcon from '@/assets/svgs/icon-unpaid.svg'
 import TotalIcon from '@/assets/svgs/icon-total.svg'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import CaretUpIcon from "@/assets/svgs/icon-carret-up.svg";
-import React, {useState} from "react";
+import CaretUpIcon from "@/assets/svgs/icon-carret-up.svg"
+import React from "react";
 import {Tabs} from "@/components/Tabs";
 import {DashboardHeaderBar} from "@/components/DashboardHeaderBar";
 import {PurchaseTable} from "@/components/PurchaseTable";
