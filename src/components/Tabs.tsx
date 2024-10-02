@@ -2,7 +2,7 @@ import React, {ReactNode, useEffect, useState} from "react";
 
 interface TabsProps {
     tabsList: { text: string, info: string, icon: ReactNode }[]
-    getCurrentTabIndex?: (number) => void
+    getCurrentTabIndex?: (index :number) => void
 }
 
 export const Tabs :React.FC<TabsProps> = ({ tabsList, getCurrentTabIndex }) => {
