@@ -5,8 +5,11 @@ const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { ApexOptions } from "apexcharts";
 import { useRouter } from "next/navigation";
 
+interface ChartProps {
+    series: { name: string, data: number[] }[]
+}
 
-export const DashboardBarChart :React.FC = () => {
+export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
     const router = useRouter();
 
     const labels =  {
@@ -16,7 +19,7 @@ export const DashboardBarChart :React.FC = () => {
     }
     const options :ApexOptions = {
         chart: {
-            height: 550,
+            height: '100px',
             width: '100%',
             toolbar: {
                 show: false
@@ -27,16 +30,7 @@ export const DashboardBarChart :React.FC = () => {
                 }
             }
         },
-        series: [
-            {
-                name: 'Previous',
-                data: [44, 55, 57, 56, 61, 58, 63, 60, 66,  56, 61, 58]
-            },
-            {
-                name: 'Current',
-                data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 12, 34, 7]
-            }
-        ],
+        series: series,
         grid: {
             show: true,
             borderColor: '#E9EAEF',
@@ -125,12 +119,11 @@ export const DashboardBarChart :React.FC = () => {
     };
 
     return (
-        <div className="px-1">
             <ApexChart
                 type="bar"
                 options={options}
                 series={options.series}
+                height="100%"
             />
-        </div>
     )
 }

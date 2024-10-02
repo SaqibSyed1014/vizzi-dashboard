@@ -57,13 +57,52 @@ export default function Dashboard() {
             icon: <TotalIcon />,
             info: '34.2k'
         }
+    ];
+
+    const paidStats = [
+            {
+                name: 'Previous',
+                data: [44, 55, 57, 56, 9, 58, 63, 60, 35,  56, 99, 58]
+            },
+            {
+                name: 'Current',
+                data: [20, 41, 29, 26, 45, 10, 52, 66, 41, 12, 34, 7]
+            }
+        ]
+
+    const unpaidStats = [
+        {
+            name: 'Previous',
+            data: [0, 29, 57, 89, 36, 58, 63, 60, 90,  56, 61, 13]
+        },
+        {
+            name: 'Current',
+            data: [35, 23, 36, 26, 45, 48, 52, 53, 0, 12, 34, 43]
+        }
     ]
 
+    const totalStats = [
+        {
+            name: 'Previous',
+            data: [12, 35, 57, 3, 61, 0, 63, 89, 22,  0, 61, 58]
+        },
+        {
+            name: 'Current',
+            data: [7, 41, 15, 26, , 48, 78, 53, 41, 19, 34, 7]
+        }
+    ]
+
+    const [selectedChartTab, selectChartTab] = useState(0);
+
+    function updateChartTabs(index) {
+        selectChartTab(index);
+    }
+
     return (
-        <div>
+        <div className="flex flex-col h-[calc(100vh_-_66px_-_105px)]">
             <DashboardHeaderBar title="Suppliers" />
 
-            <div className="dashboard-padding">
+            <div className="dashboard-padding flex-1 flex flex-col">
                 <div className="flex justify-between items-center">
                     <div className="flex gap-1 items-center">
                         <Button
@@ -119,11 +158,13 @@ export default function Dashboard() {
                 </div>
 
                 <div className="flex gap-3 pt-6 border-b border-grey-medium">
-                    <Tabs tabsList={tabs}/>
+                    <Tabs tabsList={tabs} getCurrentTabIndex={updateChartTabs} />
                 </div>
 
-                <div className="">
-                    <DashboardBarChart/>
+                <div className="flex-1 px-1">
+                    {selectedChartTab === 0 && <DashboardBarChart series={paidStats}/>}
+                    {selectedChartTab === 1 &&  <DashboardBarChart series={unpaidStats}/>}
+                    {selectedChartTab === 2 &&  <DashboardBarChart series={totalStats}/>}
                 </div>
             </div>
         </div>

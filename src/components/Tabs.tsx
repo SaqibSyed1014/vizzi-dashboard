@@ -1,11 +1,18 @@
-import React, {ReactNode, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 
 interface TabsProps {
     tabsList: { text: string, info: string, icon: ReactNode }[]
+    getCurrentTabIndex?: (number) => void
 }
 
-export const Tabs :React.FC<TabsProps> = ({ tabsList }) => {
+export const Tabs :React.FC<TabsProps> = ({ tabsList, getCurrentTabIndex }) => {
     const [selectedTab, selectTab] = useState<number>(0);
+
+    useEffect(() => {
+        if (getCurrentTabIndex) {
+            getCurrentTabIndex(selectedTab);
+        }
+    }, [selectedTab]);
 
     return (
         tabsList.map((tab, index) => {
