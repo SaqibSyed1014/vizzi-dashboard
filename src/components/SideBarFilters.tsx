@@ -39,29 +39,29 @@ export const SideBarFilters :React.FC = () => {
             isChecked: false
         },
         {
-            text: 'Ship Station',
+            text: 'Daigen Co.',
             value: 'ship-station',
             isChecked: false
         },
         {
-            text: 'Ship Station',
+            text: 'Pharmaceuticals',
             value: 'ship-station',
             isChecked: false
         },
         {
-            text: 'Ship Station',
+            text: 'Truck Pits',
             value: 'ship-station',
             isChecked: false
         },
         {
-            text: 'Ship Station',
+            text: 'Larry\'s Fuel',
             value: 'ship-station',
             isChecked: false
         }
     ];
     const categoriesFilters :FilterList[] = [
         {
-            text: 'All Suppliers',
+            text: 'All Categories',
             value: 'all',
             isChecked: false
         },
@@ -177,6 +177,7 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
                 <div className="relative">
                     <SearchIcon className="absolute top-1/2 -translate-y-1/2 left-3"/>
                     <input
+                        id={`search-${label.toLowerCase()}}`}
                         type="search"
                         placeholder={`Search ${label}`}
                         onInput={searchFilterValues}
@@ -184,11 +185,11 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                    {filters.map((filterItem) => {
+                    {filters.map((filterItem, index) => {
                         if (type === 'radio') {
-                            return <FilterRadioBoxGroup filterItem={filterItem}/>
+                            return <FilterRadioBoxGroup key={index} filterItem={filterItem}/>
                         } else if (type === 'checkbox') {
-                            return <FilterCheckboxGroup filterItem={filterItem}/>
+                            return <FilterCheckboxGroup key={index} filterItem={filterItem}/>
                         }
                     })}
                 </div>
@@ -200,8 +201,10 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
 const FilterCheckboxGroup :React.FC<{ filterItem: FilterList }> = ({ filterItem }) => {
     return (
         <div className="flex items-center gap-2">
-            <input type="checkbox" checked={filterItem.isChecked} />
-            <label className="text-sm">{filterItem.text}</label>
+            <input type="checkbox" checked={filterItem.isChecked} id={filterItem.text.toLowerCase().split(' ').join('-')} />
+            <label className="text-sm" htmlFor={filterItem.text.toLowerCase().split(' ').join('-')}>
+                {filterItem.text}
+            </label>
             <Tippy theme="light" content={`Unselecting ${filterItem.text}`}>
                 <div className="cursor-pointer ml-auto"><HolderIcon/></div>
             </Tippy>
@@ -212,8 +215,10 @@ const FilterCheckboxGroup :React.FC<{ filterItem: FilterList }> = ({ filterItem 
 const FilterRadioBoxGroup :React.FC<{ filterItem: FilterList }> = ({ filterItem }) => {
     return (
         <div className="flex items-center gap-2">
-            <input type="radio" checked={filterItem.isChecked} />
-            <label className="text-sm">{filterItem.text}</label>
+            <input type="radio" checked={filterItem.isChecked} id={filterItem.text.toLowerCase().split(' ').join('-')} />
+            <label className="text-sm" htmlFor={filterItem.text.toLowerCase().split(' ').join('-')}>
+                {filterItem.text}
+            </label>
         </div>
     )
 }

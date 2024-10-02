@@ -89,7 +89,7 @@ export default function Purchases() {
 
                     <div className="flex gap-2">
                         <div className="relative">
-                            <input type="search" placeholder="Search" className="btn-wrap w-[300px] !pl-9"/>
+                            <input id="search-purchases" type="search" placeholder="Search" className="btn-wrap w-[300px] !pl-9"/>
                             <SearchIcon className="absolute top-1/2 -translate-y-1/2 left-4" />
                         </div>
                         <Menu>

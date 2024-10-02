@@ -17,8 +17,8 @@ export const Tabs :React.FC<TabsProps> = ({ tabsList, getCurrentTabIndex }) => {
     return (
         tabsList.map((tab, index) => {
                 return (
-                    <div className="flex flex-col gap-2.5">
-                        <div key={index}
+                    <div key={index} className="flex flex-col gap-2.5">
+                        <div
                              className='flex gap-2 items-center text-sm cursor-pointer' onClick={() => selectTab(index)}>
                             <div className="size-6 bg-grey-medium rounded flex justify-center items-center">
                                 {tab.icon}
