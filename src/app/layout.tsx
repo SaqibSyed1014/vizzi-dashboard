@@ -23,7 +23,7 @@ export default function RootLayout({
           <title>Vizzii</title>
             <meta
                 name="viewport"
-                content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+                content="minimum-scale=3, initial-scale=1, width=device-width"
             />
       </head>
       <body

@@ -18,7 +18,7 @@ export const Button: React.FC<ButtonProps> = ({ type, label, hasIcon, icon, isPr
     const combinedStyles = `${baseStyles} ${primaryBtnStyles} ${secondaryBtnStyles}`;
 
     return (
-        <button type={type} className={combinedStyles}>
+        <button type={type} className={combinedStyles} aria-label={label || 'Simple Icon Button'}>
             <div className="shrink-0">{hasIcon && icon}</div>
             {label}
         </button>

@@ -36,7 +36,7 @@ export function DatePickerWithRange({
             <Popover>
                 <div className="relative">
                     <PopoverTrigger asChild>
-                        <button className="btn-wrap min-w-[235px] text-xs 2xl:text-sm">
+                        <button aria-label="Date Picker Field" className="btn-wrap min-w-[235px] text-xs 2xl:text-sm">
                             <CalendarIcon/>
                             {date?.from ? (
                                 date.to ? (
@@ -66,8 +66,8 @@ export function DatePickerWithRange({
                     />
 
                     <div className="flex gap-3 p-3 pt-0">
-                        <button onClick={clearDates} className="w-full bg-white rounded py-2.5 hover:bg-grey-medium transition">Clear</button>
-                        <button onClick={setTodayDate} className="w-full bg-blue rounded text-white py-2.5 font-medium hover:bg-blue/70 transition">Today</button>
+                        <button aria-label="Clear Date" onClick={clearDates} className="w-full bg-white rounded py-2.5 hover:bg-grey-medium transition">Clear</button>
+                        <button aria-label="Select Today Date" onClick={setTodayDate} className="w-full bg-blue rounded text-white py-2.5 font-medium hover:bg-blue/70 transition">Today</button>
                     </div>
                 </PopoverContent>
             </Popover>
