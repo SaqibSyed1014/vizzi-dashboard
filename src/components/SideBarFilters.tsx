@@ -201,7 +201,7 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
 const FilterCheckboxGroup :React.FC<{ filterItem: FilterList }> = ({ filterItem }) => {
     return (
         <div className="flex items-center gap-2">
-            <input type="checkbox" checked={filterItem.isChecked} id={filterItem.text.toLowerCase().split(' ').join('-')} />
+            <input type="checkbox" defaultChecked={filterItem.isChecked} id={filterItem.text.toLowerCase().split(' ').join('-')} />
             <label className="text-sm" htmlFor={filterItem.text.toLowerCase().split(' ').join('-')}>
                 {filterItem.text}
             </label>
@@ -215,7 +215,7 @@ const FilterCheckboxGroup :React.FC<{ filterItem: FilterList }> = ({ filterItem 
 const FilterRadioBoxGroup :React.FC<{ filterItem: FilterList }> = ({ filterItem }) => {
     return (
         <div className="flex items-center gap-2">
-            <input type="radio" checked={filterItem.isChecked} id={filterItem.text.toLowerCase().split(' ').join('-')} />
+            <input type="radio" defaultChecked={filterItem.isChecked} id={filterItem.text.toLowerCase().split(' ').join('-')} />
             <label className="text-sm" htmlFor={filterItem.text.toLowerCase().split(' ').join('-')}>
                 {filterItem.text}
             </label>
