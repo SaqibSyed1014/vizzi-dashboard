@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     swcMinify: true,
+    experimental: {
+        optimizePackageImports: ['react-apexcharts'],
+    },
     // legacyBrowsers: true,
     webpack(config) {
         // Grab the existing rule that handles SVG imports
@@ -31,4 +34,8 @@ const nextConfig = {
     },
 };
 
-export default nextConfig;
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer(nextConfig)

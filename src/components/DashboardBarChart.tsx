@@ -28,6 +28,9 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
                 dataPointSelection(e: any, chart?: any, options?: any) {
                     router.push('/purchases');
                 }
+            },
+            animations: {
+                enabled: false
             }
         },
         series: series,
