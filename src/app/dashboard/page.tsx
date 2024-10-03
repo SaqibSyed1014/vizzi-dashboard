@@ -8,6 +8,12 @@ import React, {useState} from "react";
 import {DashboardHeaderBar} from "@/components/DashboardHeaderBar";
 import {Button} from "@/components/Button";
 import dynamic from "next/dynamic";
+import ArrowLeftIcon from "@/assets/svgs/icon-arrow-left.svg"
+import ColumnChartIcon from "@/assets/svgs/icon-column-chart.svg"
+import LineChartIcon from "@/assets/svgs/icon-line-chart.svg"
+import PieChartIcon from "@/assets/svgs/icon-pie-chart.svg"
+import BarChartIcon from "@/assets/svgs/icon-bar-chart.svg"
+
 
 const Tabs = dynamic(() => import('../../components/Tabs').then(comp => comp.Tabs), {
     ssr: false
@@ -16,21 +22,6 @@ const FilterHorizontalTabs = dynamic(() => import('../../components/FilterHorizo
     ssr: false
 })
 const DashboardBarChart = dynamic(() => import('../../components/DashboardBarChart').then(comp => comp.DashboardBarChart), {
-    ssr: false
-})
-const ArrowLeftIcon = dynamic(() => import('../../assets/svgs/icon-arrow-left.svg'), {
-    ssr: false
-})
-const ColumnChartIcon = dynamic(() => import('../../assets/svgs/icon-column-chart.svg'), {
-    ssr: false
-})
-const LineChartIcon = dynamic(() => import('../../assets/svgs/icon-line-chart.svg'), {
-    ssr: false
-})
-const PieChartIcon = dynamic(() => import('../../assets/svgs/icon-pie-chart.svg'), {
-    ssr: false
-})
-const BarChartIcon = dynamic(() => import('../../assets/svgs/icon-bar-chart.svg'), {
     ssr: false
 })
 const MenuItems = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItems), {
