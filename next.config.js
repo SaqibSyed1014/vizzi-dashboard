@@ -2,7 +2,7 @@
 const nextConfig = {
     swcMinify: true,
     experimental: {
-        optimizePackageImports: ['react-apexcharts'],
+        optimizePackageImports: ['react-apexcharts', '@headlessui/react'],
     },
     // legacyBrowsers: true,
     webpack(config) {
