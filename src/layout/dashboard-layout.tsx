@@ -1,11 +1,11 @@
 'use client'
-import React, {useState} from "react";
+import React, {ReactNode, useState} from "react";
 import TopBar from "@/components/TopBar";
 import {SideBarFiltersWrapper} from "@/components/SideBarFiltersWrapper";
 import {DashboardTopFilters} from "@/components/DashboardTopFilters";
 
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({ children } : { children: ReactNode }) {
     const [sidebarExpanded, toggleSidebar] = useState<boolean>(true);
 
     function togglingSidebar() {
