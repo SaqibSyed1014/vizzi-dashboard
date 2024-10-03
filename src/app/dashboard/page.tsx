@@ -40,6 +40,11 @@ const MenuItem = dynamic(() => import('@headlessui/react').then(mod => mod.MenuI
     ssr: false
 });
 
+
+interface ChartSeries {
+    name: string
+    data: number[]
+}
 export default function Dashboard() {
     const chartTypes = [
         {
@@ -82,7 +87,7 @@ export default function Dashboard() {
         }
     ];
 
-    const paidStats = [
+    const paidStats :ChartSeries[] = [
             {
                 name: 'Previous',
                 data: [44, 55, 57, 56, 9, 58, 63, 60, 35,  56, 99, 58]
@@ -93,7 +98,7 @@ export default function Dashboard() {
             }
         ]
 
-    const unpaidStats = [
+    const unpaidStats :ChartSeries[] = [
         {
             name: 'Previous',
             data: [0, 29, 57, 89, 36, 58, 63, 60, 90,  56, 61, 13]
@@ -104,14 +109,14 @@ export default function Dashboard() {
         }
     ]
 
-    const totalStats = [
+    const totalStats :ChartSeries[] = [
         {
             name: 'Previous',
             data: [12, 35, 57, 3, 61, 0, 63, 89, 22,  0, 61, 58]
         },
         {
             name: 'Current',
-            data: [7, 41, 15, 26, , 48, 78, 53, 41, 19, 34, 7]
+            data: [7, 41, 15, 26, 50, 48, 78, 53, 41, 19, 34, 7]
         }
     ]
 
