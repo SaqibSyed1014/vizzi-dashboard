@@ -187,7 +187,9 @@ const FiltrationBlock :React.FC<FiltrationBlockProps> = ({ type, label, filterLi
 
             {isFilterBlockCollapsed && <div className="collapsed-block flex flex-col gap-3 mt-1">
                 <div className="relative">
-                    <SearchIcon className="absolute top-1/2 -translate-y-1/2 left-3"/>
+                    <div className="absolute top-1/2 -translate-y-1/2 left-3">
+                        <SearchIcon />
+                    </div>
                     <input
                         id={`search-${label.toLowerCase()}}`}
                         type="search"
