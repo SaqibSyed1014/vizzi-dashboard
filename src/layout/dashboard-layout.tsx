@@ -1,17 +1,12 @@
 'use client'
 import React, {useState} from "react";
 import TopBar from "@/components/TopBar";
-import dynamic from "next/dynamic";
-const SideBarFiltersWrapper = dynamic(() => import('../components/SideBarFiltersWrapper').then(comp => comp.SideBarFiltersWrapper), {
-    ssr: false
-})
-const DashboardTopFilters = dynamic(() => import('../components/DashboardTopFilters').then(comp => comp.DashboardTopFilters), {
-    ssr: false
-})
+import {SideBarFiltersWrapper} from "@/components/SideBarFiltersWrapper";
+import {DashboardTopFilters} from "@/components/DashboardTopFilters";
 
 
 export default function DashboardLayout({ children }) {
-    const [sidebarExpanded, toggleSidebar] = useState(true);
+    const [sidebarExpanded, toggleSidebar] = useState<boolean>(true);
 
     function togglingSidebar() {
         toggleSidebar(!sidebarExpanded);

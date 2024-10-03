@@ -1,9 +1,15 @@
 'use client'
-import React, {useState} from "react";
+import React from "react";
 import {Button} from "@/components/Button";
 import SyncIcon from '@/assets/svgs/icon-sync.svg'
-import {FilterHorizontalTabs} from "@/components/FilterHorizontalTabs";
-import {DatePickerWithRange} from "@/components/DateRangePicker";
+import dynamic from "next/dynamic";
+
+const FilterHorizontalTabs = dynamic(() => import('../components/FilterHorizontalTabs').then(comp => comp.FilterHorizontalTabs), {
+    ssr: false
+})
+const DatePickerWithRange = dynamic(() => import('../components/DateRangePicker').then(comp => comp.DatePickerWithRange), {
+    ssr: false
+})
 
 export const DashboardTopFilters :React.FC = () => {
     return (

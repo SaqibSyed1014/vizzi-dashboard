@@ -1,14 +1,26 @@
 'use client'
 import React, {useState} from "react";
 import CaretUpIcon from '@/assets/svgs/icon-carret-up.svg'
-import SearchIcon from '@/assets/svgs/icon-search.svg'
-import HolderIcon from '@/assets/svgs/icon-holder.svg'
 import InfoIcon from '@/assets/svgs/icon-info.svg'
 import CaretDownOutlineIcon from '@/assets/svgs/icon-carret-down-outline.svg'
-import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
+import { Menu, MenuButton } from "@headlessui/react";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/themes/light.css';
 import 'tippy.js/dist/tippy.css';
+import dynamic from "next/dynamic";
+
+const SearchIcon = dynamic(() => import('../assets/svgs/icon-search.svg'), {
+    ssr: false
+})
+const HolderIcon = dynamic(() => import('../assets/svgs/icon-holder.svg'), {
+    ssr: false
+})
+const MenuItems = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItems), {
+    ssr: false
+});
+const MenuItem = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItem), {
+    ssr: false
+});
 
 interface FilterList {
     text: string,

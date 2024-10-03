@@ -1,7 +1,12 @@
+'use client'
 import React from "react";
 import InfoIcon from '@/assets/svgs/icon-info.svg';
-import {SideBarFilters} from "@/components/SideBarFilters";
 import ChevronLeftIcon from "@/assets/svgs/icon-chevron-left.svg";
+import dynamic from "next/dynamic";
+
+const SideBarFilters = dynamic(() => import('../components/SideBarFilters').then(comp => comp.SideBarFilters), {
+    ssr: false
+})
 
 interface SidebarWrapperProps {
     isSidebarExpanded: boolean,

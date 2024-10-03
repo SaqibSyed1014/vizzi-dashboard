@@ -1,11 +1,22 @@
 import HamburgerIcon from '@/assets/svgs/icon-hamburger.svg'
 import ShareIcon from '@/assets/svgs/icon-share.svg';
 import { Button } from "@/components/Button";
-import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
+import {Menu, MenuButton} from "@headlessui/react";
 import CaretUpIcon from "@/assets/svgs/icon-carret-up.svg";
 import React from "react";
 import EntityIcon from "@/assets/svgs/icon-entity.svg";
-import AddCircleIcon from "@/assets/svgs/icon-add-circle.svg";
+import dynamic from "next/dynamic";
+
+
+const AddCircleIcon = dynamic(() => import('../assets/svgs/icon-add-circle.svg'), {
+    ssr: false
+})
+const MenuItems = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItems), {
+    ssr: false
+});
+const MenuItem = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItem), {
+    ssr: false
+});
 
 export default function TopBar() {
     return (

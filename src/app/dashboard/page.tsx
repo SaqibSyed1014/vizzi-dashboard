@@ -1,24 +1,15 @@
 'use client'
-
-import ArrowLeftIcon from '@/assets/svgs/icon-arrow-left.svg'
-import ColumnChartIcon from '@/assets/svgs/icon-column-chart.svg'
-import LineChartIcon from '@/assets/svgs/icon-line-chart.svg'
-import PieChartIcon from '@/assets/svgs/icon-pie-chart.svg'
-import BarChartIcon from '@/assets/svgs/icon-bar-chart.svg'
 import PaidIcon from '@/assets/svgs/icon-paid.svg'
 import UnpaidIcon from '@/assets/svgs/icon-unpaid.svg'
 import TotalIcon from '@/assets/svgs/icon-total.svg'
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Menu, MenuButton } from '@headlessui/react'
 import CaretUpIcon from "@/assets/svgs/icon-carret-up.svg";
 import React, {useState} from "react";
+import {DashboardHeaderBar} from "@/components/DashboardHeaderBar";
+import {Button} from "@/components/Button";
 import dynamic from "next/dynamic";
-const Button = dynamic(() => import('../../components/Button').then(comp => comp.Button), {
-    ssr: false
-})
+
 const Tabs = dynamic(() => import('../../components/Tabs').then(comp => comp.Tabs), {
-    ssr: false
-})
-const DashboardHeaderBar = dynamic(() => import('../../components/DashboardHeaderBar').then(comp => comp.DashboardHeaderBar), {
     ssr: false
 })
 const FilterHorizontalTabs = dynamic(() => import('../../components/FilterHorizontalTabs').then(comp => comp.FilterHorizontalTabs), {
@@ -27,6 +18,27 @@ const FilterHorizontalTabs = dynamic(() => import('../../components/FilterHorizo
 const DashboardBarChart = dynamic(() => import('../../components/DashboardBarChart').then(comp => comp.DashboardBarChart), {
     ssr: false
 })
+const ArrowLeftIcon = dynamic(() => import('../../assets/svgs/icon-arrow-left.svg'), {
+    ssr: false
+})
+const ColumnChartIcon = dynamic(() => import('../../assets/svgs/icon-column-chart.svg'), {
+    ssr: false
+})
+const LineChartIcon = dynamic(() => import('../../assets/svgs/icon-line-chart.svg'), {
+    ssr: false
+})
+const PieChartIcon = dynamic(() => import('../../assets/svgs/icon-pie-chart.svg'), {
+    ssr: false
+})
+const BarChartIcon = dynamic(() => import('../../assets/svgs/icon-bar-chart.svg'), {
+    ssr: false
+})
+const MenuItems = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItems), {
+    ssr: false
+});
+const MenuItem = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItem), {
+    ssr: false
+});
 
 export default function Dashboard() {
     const chartTypes = [
@@ -103,9 +115,9 @@ export default function Dashboard() {
         }
     ]
 
-    const [selectedChartTab, selectChartTab] = useState(0);
+    const [selectedChartTab, selectChartTab] = useState<number>(0);
 
-    function updateChartTabs(index) {
+    function updateChartTabs(index :number) {
         selectChartTab(index);
     }
 
