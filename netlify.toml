@@ -1,6 +1,6 @@
 [build]
     command = "next build"
-    publish = ".next/server/app/"
+    publish = ".next"
 
 [[redirects]]
     from = "/*"
