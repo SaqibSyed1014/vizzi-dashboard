@@ -1,7 +1,5 @@
 'use client'
 import React, {useRef} from "react";
-import dynamic from "next/dynamic";
-// const BarChart = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), { ssr: false });
 import { Bar } from "react-chartjs-2";
 import {
     Chart as ChartJS,
@@ -50,6 +48,7 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
 
     const chartOptions :ChartOptions<"bar"> = {
         maintainAspectRatio: false,
+        animation: false,
         interaction: {
             intersect: false,
             mode: 'index',
