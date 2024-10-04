@@ -76,7 +76,7 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
             }
         },
         onClick(event: ChartEvent, elements: ActiveElement[], chart: Chart) {
-            const activePoints = myChart.current?.getElementsAtEventForMode(event as Event, 'nearest', { intersect: true }, true);
+            const activePoints = myChart.current?.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
             if (activePoints?.length > 0) {
                 router.push('/purchases');
             }
