@@ -95,22 +95,26 @@ export default function Dashboard() {
     const unpaidStats :ChartSeries[] = [
         {
             name: 'Previous',
-            data: [0, 29, 57, 89, 36, 58, 63, 60, 90,  56, 61, 13]
+            data: [0, 29, 57, 89, 36, 58, 63, 60, 90,  56, 61, 13],
+            bgColor: '#1A2956'
         },
         {
             name: 'Current',
-            data: [35, 23, 36, 26, 45, 48, 52, 53, 0, 12, 34, 43]
+            data: [35, 23, 36, 26, 45, 48, 52, 53, 0, 12, 34, 43],
+            bgColor: '#41CCAD'
         }
     ]
 
     const totalStats :ChartSeries[] = [
         {
             name: 'Previous',
-            data: [12, 35, 57, 3, 61, 0, 63, 89, 22,  0, 61, 58]
+            data: [12, 35, 57, 3, 61, 0, 63, 89, 22,  0, 61, 58],
+            bgColor: '#1A2956'
         },
         {
             name: 'Current',
-            data: [7, 41, 15, 26, 50, 48, 78, 53, 41, 19, 34, 7]
+            data: [7, 41, 15, 26, 50, 48, 78, 53, 41, 19, 34, 7],
+            bgColor: '#41CCAD'
         }
     ]
 
