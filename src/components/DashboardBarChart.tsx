@@ -65,10 +65,6 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
                     color: 'black',
                     textStrokeWidth: .5,
                     textStrokeColor: 'black',
-                    callback: function(val :number, index :number) {
-                        return this.getLabelForValue(val);
-                    },
-
                 }
             },
             y: {
