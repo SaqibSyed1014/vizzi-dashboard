@@ -22,7 +22,7 @@ const FilterHorizontalTabs = dynamic(() => import('../../components/FilterHorizo
     ssr: false
 })
 const DashboardBarChart = dynamic(() => import('../../components/DashboardBarChart').then(comp => comp.DashboardBarChart), {
-    ssr: false
+    ssr: true
 })
 const MenuItems = dynamic(() => import('@headlessui/react').then(mod => mod.MenuItems), {
     ssr: false
