@@ -65,8 +65,7 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
                     color: 'black',
                     textStrokeWidth: .5,
                     textStrokeColor: 'black',
-                    callback: function(val, index) {
-                        // Hide every 2nd tick label
+                    callback: function(val :number, index :number) {
                         return this.getLabelForValue(val);
                     },
 
@@ -109,7 +108,7 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
                 usePointStyle: true,
                 callbacks: {
                     title: () => `Click to view details`,
-                    labelPointStyle: function(context) {
+                    labelPointStyle: function() {
                         return {
                             pointStyle: 'circle',
                             rotation: 0
