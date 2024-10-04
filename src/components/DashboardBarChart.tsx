@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
+const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: true });
 import { ApexOptions } from "apexcharts";
 import { useRouter } from "next/navigation";
 
