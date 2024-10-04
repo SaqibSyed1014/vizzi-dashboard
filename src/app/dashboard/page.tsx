@@ -181,9 +181,9 @@ export default function Dashboard() {
                 </div>
 
                 <div className="flex-1 px-1">
-                    {selectedChartTab === 0 && <DashboardBarChart series={paidStats}/>}
-                    {selectedChartTab === 1 &&  <DashboardBarChart series={unpaidStats}/>}
-                    {selectedChartTab === 2 &&  <DashboardBarChart series={totalStats}/>}
+                    {/*{selectedChartTab === 0 && <DashboardBarChart series={paidStats}/>}*/}
+                    {/*{selectedChartTab === 1 &&  <DashboardBarChart series={unpaidStats}/>}*/}
+                    {/*{selectedChartTab === 2 &&  <DashboardBarChart series={totalStats}/>}*/}
                 </div>
             </div>
         </div>
