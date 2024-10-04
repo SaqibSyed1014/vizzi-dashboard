@@ -1,10 +1,21 @@
-import React from "react";
+'use client'
+import React, {useRef} from "react";
 import dynamic from "next/dynamic";
 // const BarChart = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), { ssr: false });
 import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Legend, Tooltip } from "chart.js";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    PointElement,
+    Legend,
+    Tooltip,
+    ChartEvent, ActiveElement, Chart
+} from "chart.js";
 // import { ApexOptions } from "apexcharts";
 import { useRouter } from "next/navigation";
+import { ChartOptions } from "chart.js";
 
 ChartJS.register(
     LinearScale,
@@ -19,116 +30,13 @@ interface ChartProps {
 
 export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
     const router = useRouter();
+    const myChart = useRef<any>();
 
     const labels =  {
         style: {
             fontWeight: 800
         }
     }
-    const options = {
-        chart: {
-            height: '100px',
-            width: '100%',
-            toolbar: {
-                show: false
-            },
-            events: {
-                dataPointSelection(e: any, chart?: any, options?: any) {
-                    router.push('/purchases');
-                }
-            },
-            animations: {
-                enabled: false
-            }
-        },
-        series: series,
-        grid: {
-            show: true,
-            borderColor: '#E9EAEF',
-            xaxis: {
-                lines: {
-                    show: true
-                }
-            },
-            yaxis: {
-                lines: {
-                    show: true
-                }
-            },
-        },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '36px',
-                dataLabels: {
-                    position: 'top', // top, center, bottom
-                },
-            },
-        },
-        dataLabels: {
-            enabled: true,
-            formatter: function (val :number) {
-                return val + "k";
-            },
-            offsetX: 0,
-            offsetY: -18,
-            style: {
-                fontSize: '10px',
-                colors: ["#9CA3AF"]
-            }
-        },
-        stroke: {
-            show: true,
-            width: 0,
-            colors: ['transparent']
-        },
-        xaxis: {
-            type: 'datetime',
-            labels: labels,
-            categories: ['Feb-23', 'Mar-23', 'Apr-23', 'May-23', 'Jun-23', 'Jul-23', 'Aug-23', 'Sep-23', 'Oct-23', 'Nov-23', 'Dec-23', 'Jan-24'],
-        },
-        colors: ["#1A2956", '#41CCAD'],
-        yaxis: {
-            labels: labels,
-        },
-        fill: {
-            opacity: 1
-        },
-        legend:{
-          show: true,
-            fontSize: '12px',
-          markers: {
-              size: 6,
-              shape: 'circle'
-          }
-        },
-        tooltip: {
-            shared: true,
-            followCursor: false,
-            intersect: false,
-            custom: function({ series, seriesIndex, dataPointIndex, w } :any) {
-                console.log('check ', series, seriesIndex, dataPointIndex, w)
-                return `<div class="tooltip-wrap mt-40">
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="18" viewBox="0 0 8 18" fill="none">-->
-<!--                                <path d="M0.707106 8.05852L7.70711 1.05852C7.89464 0.870982 8 0.616629 8 0.351412L8 17.1798C8 16.9146 7.89464 16.6603 7.70711 16.4727L0.707107 9.47273C0.316583 9.08221 0.316582 8.44904 0.707106 8.05852Z" fill="red"/>-->
-<!--                            </svg>-->
-                          <div class="chart-tooltip">
-                            <p class="text-[10px]">Click to view details</p>
-                            <div class="text-xs">
-                                    <div class="flex gap-1 items-center">
-                                        <div class="size-2.5 rounded-full" style="background: #41CCAD;"></div>
-                                        <p>${w.config.xaxis.categories[dataPointIndex]}: $${series[0][dataPointIndex]}</p>
-                                    </div>
-                                    <div class="flex gap-1 items-center">
-                                        <div class="size-2.5 rounded-full" style="background: #1A2956;"></div>
-                                        <p>${w.config.xaxis.categories[dataPointIndex]}: $${series[1][dataPointIndex]}</p>
-                                    </div>                            
-                            </div>
-                          </div>
-                         </div>`
-            },
-        }
-    };
 
     const data = {
         labels:  ['Feb-23', 'Mar-23', 'Apr-23', 'May-23', 'Jun-23', 'Jul-23', 'Aug-23', 'Sep-23', 'Oct-23', 'Nov-23', 'Dec-23', 'Jan-24'],
@@ -140,9 +48,83 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
         }))
     };
 
+    const chartOptions :ChartOptions<"bar"> = {
+        maintainAspectRatio: false,
+        interaction: {
+            intersect: false,
+            mode: 'index',
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: true,
+                },
+                ticks: {
+                    color: 'black',
+                    textStrokeWidth: .5,
+                    textStrokeColor: 'black',
+                    callback: function(val, index) {
+                        // Hide every 2nd tick label
+                        return this.getLabelForValue(val);
+                    },
+
+                }
+            },
+            y: {
+                ticks: {
+                    color: 'black',
+                    textStrokeWidth: .5,
+                    textStrokeColor: 'black',
+                }
+            }
+        },
+        onClick(event: ChartEvent, elements: ActiveElement[], chart: Chart) {
+            const activePoints = myChart.current?.getElementsAtEventForMode(event as Event, 'nearest', { intersect: true }, true);
+            if (activePoints?.length > 0) {
+                router.push('/purchases');
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    boxWidth: 8,
+                    boxHeight: 8
+                }
+            },
+            tooltip: {
+                enabled: true,
+                xAlign: 'left',
+                yAlign: 'center',
+                backgroundColor: 'white',
+                titleColor: 'black',
+                displayColors: true,
+                boxWidth: 15,
+                bodyColor: 'black',
+                usePointStyle: true,
+                callbacks: {
+                    title: () => `Click to view details`,
+                    labelPointStyle: function(context) {
+                        return {
+                            pointStyle: 'circle',
+                            rotation: 0
+                        };
+                    }
+                }
+            }
+        }
+    }
+
     return (
             <Bar
+                ref={myChart}
                 data={data}
+                options={chartOptions}
             />
     )
 }

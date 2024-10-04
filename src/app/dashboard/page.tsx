@@ -183,7 +183,7 @@ export default function Dashboard() {
                     <FilterHorizontalTabs tabItems={chartTypes} preSelectedValue={chartTypes[0].value}/>
                 </div>
 
-                <div className="flex gap-3 pt-6 border-b border-grey-medium">
+                <div className="flex gap-3 pt-6 border-b border-grey-medium pb-3 xl:pb-5">
                     <Tabs tabsList={tabs} getCurrentTabIndex={updateChartTabs} />
                 </div>
 
