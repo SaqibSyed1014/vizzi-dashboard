@@ -35,6 +35,7 @@ const MenuItem = dynamic(() => import('@headlessui/react').then(mod => mod.MenuI
 interface ChartSeries {
     name: string
     data: number[]
+    bgColor: string
 }
 export default function Dashboard() {
     const chartTypes = [
@@ -81,11 +82,13 @@ export default function Dashboard() {
     const paidStats :ChartSeries[] = [
             {
                 name: 'Previous',
-                data: [44, 55, 57, 56, 9, 58, 63, 60, 35,  56, 99, 58]
+                data: [44, 55, 57, 56, 9, 58, 63, 60, 35,  56, 99, 58],
+                bgColor: '#1A2956'
             },
             {
                 name: 'Current',
-                data: [20, 41, 29, 26, 45, 10, 52, 66, 41, 12, 34, 7]
+                data: [20, 41, 29, 26, 45, 10, 52, 66, 41, 12, 34, 7],
+                bgColor: '#41CCAD'
             }
         ]
 

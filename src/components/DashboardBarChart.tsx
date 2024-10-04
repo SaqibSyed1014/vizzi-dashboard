@@ -1,11 +1,20 @@
 import React from "react";
 import dynamic from "next/dynamic";
-const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import { ApexOptions } from "apexcharts";
+// const BarChart = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), { ssr: false });
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Legend, Tooltip } from "chart.js";
+// import { ApexOptions } from "apexcharts";
 import { useRouter } from "next/navigation";
 
+ChartJS.register(
+    LinearScale,
+    CategoryScale,
+    BarElement,
+    PointElement, Legend, Tooltip
+)
+
 interface ChartProps {
-    series: { name: string, data: number[] }[]
+    series: { name: string, data: number[], bgColor: string }[]
 }
 
 export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
@@ -16,7 +25,7 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
             fontWeight: 800
         }
     }
-    const options :ApexOptions = {
+    const options = {
         chart: {
             height: '100px',
             width: '100%',
@@ -121,12 +130,19 @@ export const DashboardBarChart :React.FC<ChartProps> = ({ series }) => {
         }
     };
 
+    const data = {
+        labels:  ['Feb-23', 'Mar-23', 'Apr-23', 'May-23', 'Jun-23', 'Jul-23', 'Aug-23', 'Sep-23', 'Oct-23', 'Nov-23', 'Dec-23', 'Jan-24'],
+        datasets: series.map((item) => ({
+            label: item.name,
+            data: item.data,
+            tension: 0.1,
+            backgroundColor: item.bgColor
+        }))
+    };
+
     return (
-            <ApexChart
-                type="bar"
-                options={options}
-                series={options.series}
-                height="100%"
+            <Bar
+                data={data}
             />
     )
 }
